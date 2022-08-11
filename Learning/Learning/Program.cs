@@ -1,3 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using Learning;
 
-Console.WriteLine("Hello, World!");
+var message = new HelloWorld();
+message.Run();
