@@ -6,31 +6,30 @@ public static class LogicalOperations
     {
         if (value == "True") return true;
         else if (value == "true") return true;
-        else if (value == "true") return true;
         else if (value == "1") return true;
         else if (value == "1.0") return true;
         else if (value == "False") return false;
         else if (value == "false") return false;
         else if (value == "0") return false;
         else if (value == "0.0") return false;
-        else return null;
+        return null;
     }
 
     public static bool? LogicalMethod(string value)
     {
-        bool trueCheck = value == "True" || value == "true" || value == "1" || value == "1.0";
-        bool falseCheck = value == "False" || value == "false" || value == "0" || value == "0.0";
-        bool otherCheck = trueCheck == false && falseCheck == false;
+        var trueCheck = value == "True" || value == "true" || value == "1" || value == "1.0";
+        var falseCheck = value == "False" || value == "false" || value == "0" || value == "0.0";
+        var otherCheck = trueCheck == false && falseCheck == false;
 
-        return otherCheck == false ? (trueCheck == true ? true : false) : null;
+        return otherCheck == false ? trueCheck : null;
         
     }
 
     public static bool? ParseMethod(string value)
     {
-        bool trueCheck = value == "True" || value == "true" || value == "1";
-        bool falseCheck = value == "False" || value == "false" || value == "0";
-        bool otherValueCheck = trueCheck == false && falseCheck == false;
+        var trueCheck = value == "True" || value == "true" || value == "1";
+        var falseCheck = value == "False" || value == "false" || value == "0";
+        var otherValueCheck = trueCheck == false && falseCheck == false;
 
         return otherValueCheck == false ? bool.Parse(trueCheck.ToString()) : null;
     }
