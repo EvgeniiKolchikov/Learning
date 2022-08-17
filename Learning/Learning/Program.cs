@@ -1,5 +1,5 @@
 ﻿using Learning;
 
-var loopLesson = new LoopLesson();
+var arrayLesson = new ArrayLesson();
 
-loopLesson.Run();
+arrayLesson.Run();
