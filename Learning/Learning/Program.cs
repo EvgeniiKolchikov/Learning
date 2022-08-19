@@ -14,4 +14,4 @@ methodLesson.PrintPerson("Roma",b);
 methodLesson.PrintPersonOptional("Henry", 44,"Apple");
 methodLesson.PrintPersonOptional("Garry",65);
 methodLesson.PrintPersonOptional();
-methodLesson.PrintPerson(age: 54);
+methodLesson.PrintPerson(age: 54, name: "Ter");
