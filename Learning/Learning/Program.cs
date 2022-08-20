@@ -1,17 +1,24 @@
-﻿using Learning;
+﻿using System.Threading.Channels;
+using Learning;
 
-var methodLesson = new MethodLesson();
+var arrayClass = new Dz();
 
-methodLesson.Hello();
-methodLesson.SayHello();
-methodLesson.PrintMessage("Hi");
-methodLesson.Sum(11,2);
-methodLesson.Sum2(13,9);
-methodLesson.PrintPerson("Nik",112);
+arrayClass.AddNewElement(12);
+arrayClass.AddNewElement(12);
+arrayClass.AddNewElement(11);
+arrayClass.AddNewElement(11);
+arrayClass.AddNewElement(11);
+arrayClass.AddNewElement(11);
+arrayClass.AddNewElement(11);
+arrayClass.AddNewElement(11);
+arrayClass.AddNewElement(1);
 
-byte b = 34;
-methodLesson.PrintPerson("Roma",b);
-methodLesson.PrintPersonOptional("Henry", 44,"Apple");
-methodLesson.PrintPersonOptional("Garry",65);
-methodLesson.PrintPersonOptional();
-methodLesson.PrintPerson(age: 54, name: "Ter");
+var intArray = arrayClass.GetArray();
+
+var elementFromIndex = arrayClass.ElementFromIndex(2);
+
+var indexFromElement = arrayClass.IndexFromElement(123);
+
+var betwIndex = arrayClass.PartOfArray(0, 2);
+
+Console.Read();
