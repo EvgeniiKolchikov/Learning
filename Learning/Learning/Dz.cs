@@ -2,32 +2,29 @@ namespace Learning;
 
 public class Dz
 {
-    private object[] _array;
-    private int dimension = 8;
+    private int?[] _array;
     
     public Dz()
     {
-        _array = new object[dimension];
-        
+        _array = new int?[8];
     }
 
     public void AddNewElement(int value)
     {
-        
-        for (int i = 0; i < _array.Length - 1; i++)
+        for (var i = 0; i <= _array.Length - 1; i++)
         {
             if (_array[i] == null)
             {
                 _array[i] = value;
+                CheckIndexOut(ref _array);
                 return;
             }
         }
     }
 
-    public int[] GetArray()
+    public int?[] GetArray()
     {
-        var tempArray = ArrayNullClean(_array);
-        return ConvertObjectArrayToIntArray(tempArray);
+        return ArrayNullClean(_array);
     }
 
     public int? ElementFromIndex(int index)
@@ -35,7 +32,7 @@ public class Dz
         var nullCleanedArray = ArrayNullClean(_array);
         if (index <= nullCleanedArray.Length - 1)
         {
-            return (int)nullCleanedArray[index];
+            return nullCleanedArray[index];
         }
 
         return null;
@@ -45,47 +42,41 @@ public class Dz
     {
         var nullCleanedArray = ArrayNullClean(_array);
         
-        for (int i = 0; i < nullCleanedArray.Length; i++)
+        for (var i = 0; i < nullCleanedArray.Length; i++)
         {
-            if ((int)nullCleanedArray[i] == element)
+            if (nullCleanedArray[i] == element)
             {
                 return i;
             }
         }
         return -1;
     }
-
     
-    public int[] PartOfArray(int firstIndex, int secondIndex)
+    public int?[] PartOfArray(int firstIndex, int secondIndex)
     {
-        var count = secondIndex - firstIndex;
         var arrayNullCleaned = ArrayNullClean(_array);
-        if (secondIndex >= _array.Length - 1)
+        if (secondIndex <= arrayNullCleaned.Length - 1 && secondIndex > firstIndex)
         {
-            Array.Copy(arrayNullCleaned, firstIndex, _array, 0, secondIndex);
+            var count = secondIndex - firstIndex + 1;
+            var tempArray = new int?[count];
+            
+            Array.Copy(arrayNullCleaned,firstIndex, tempArray,0,count);
+            return tempArray;
         }
-        
-        return ConvertObjectArrayToIntArray(_array);
-
+        return null;
     }
 
-    private object[] ArrayNullClean(object[] array)
+    private static int?[] ArrayNullClean(int?[] array)
     {
         return array.Where(x => x != null).ToArray();
     }
-
-    private int[] ConvertObjectArrayToIntArray(object[] array)
+    
+    private static void CheckIndexOut(ref int?[] array)
     {
-        return   Array.ConvertAll<object,int>(ArrayNullClean(array).ToArray(), (o) => (int)o);
-    }
-
-    private void CheckIndexOut(ref object[] array, int dimension)
-    {
+        var tempArray = array;
         var length = array.Length;
-        if (array.Length % dimension == 0)
-        {
-            array = new object[length + dimension];
-            
-        }
+        if (array[^1] == null) return;
+        array = new int?[length + 8];
+        Array.Copy(tempArray,array,tempArray.Length);
     }
 }
