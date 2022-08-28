@@ -1,10 +1,10 @@
 namespace Learning;
 
-public class Dz
+public class ArrayLessonHomeWork
 {
     private int?[] _array;
     
-    public Dz()
+    public ArrayLessonHomeWork()
     {
         _array = new int?[8];
     }
@@ -13,12 +13,10 @@ public class Dz
     {
         for (var i = 0; i <= _array.Length - 1; i++)
         {
-            if (_array[i] == null)
-            {
-                _array[i] = value;
-                CheckIndexOut(ref _array);
-                return;
-            }
+            if (_array[i] != null) continue;
+            _array[i] = value;
+            CheckIndexOut(ref _array);
+            return;
         }
     }
 
