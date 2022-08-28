@@ -55,15 +55,12 @@ public class Dz
     public int?[] PartOfArray(int firstIndex, int secondIndex)
     {
         var arrayNullCleaned = ArrayNullClean(_array);
-        if (secondIndex <= arrayNullCleaned.Length - 1 && secondIndex > firstIndex)
-        {
-            var count = secondIndex - firstIndex + 1;
-            var tempArray = new int?[count];
+        if (secondIndex > arrayNullCleaned.Length - 1 || secondIndex <= firstIndex) return null;
+        var count = secondIndex - firstIndex + 1;
+        var tempArray = new int?[count];
             
-            Array.Copy(arrayNullCleaned,firstIndex, tempArray,0,count);
-            return tempArray;
-        }
-        return null;
+        Array.Copy(arrayNullCleaned,firstIndex, tempArray,0,count);
+        return tempArray;
     }
 
     private static int?[] ArrayNullClean(int?[] array)
