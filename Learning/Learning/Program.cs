@@ -1,23 +1,20 @@
-﻿using Learning;
+﻿using System.Threading.Channels;
+using Learning;
 
-var arrayClass = new Dz();
+var classLesson = new ClassLesson();
+var name = ClassLesson.ConstString;
 
-arrayClass.AddNewElement(12);
-arrayClass.AddNewElement(83);
-arrayClass.AddNewElement(2);
-arrayClass.AddNewElement(33);
-arrayClass.AddNewElement(8);
-arrayClass.AddNewElement(25);
-arrayClass.AddNewElement(666);
-arrayClass.AddNewElement(76);
-arrayClass.AddNewElement(56);
+var bob = new ClassLesson();
+var tom = new ClassLesson("Tom");
+var rex = new ClassLesson("Rex", 44);
+ClassLesson hty = new(32, 23, 33);
 
-var intArray = arrayClass.GetArray();
+var o = new ClassLesson{number = 32, number2 = 2, name = "333"};
+var constructInit = new ClassLesson { number = 33, company = { title = "AppleJuice" } };
 
-var elementFromIndex = arrayClass.ElementFromIndex(3);
+var cv = new ClassLesson(name: "3444fdsf");
 
-var indexFromElement = arrayClass.IndexFromElement(56);
-
-var betwIndex = arrayClass.PartOfArray(0, 8);
-
+var clasToParameter = new ClassLesson(bob);
+    
 Console.Read();
+//classLesson.PrintName();
