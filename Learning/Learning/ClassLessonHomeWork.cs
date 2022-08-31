@@ -11,34 +11,40 @@ public class ClassLessonHomeWork
         get { return _animalType; }
     }
 
-    private int _diagnosis;
+    private int _diagnosis = 3;
     public int Diagnosis
     {
         set { DiagnosisSetCheck(value); }
         get { return _diagnosis; }
     }
     
-    private int _initialInspectionCost = 0;
-    private int _totalCost = 0;
-    
+    private int _initialInspectionCost;
+    private int _totalCost;
+
+    public ClassLessonHomeWork(string name, int animalType)
+    {
+        Name = name;
+        AnimalSetCheck(animalType);
+    }
     public ClassLessonHomeWork(string name, int animalType, int diagnosis = (int)DiagnosisEnum.NoHelp)
     {
         Name = name;
         AnimalSetCheck(animalType);
         DiagnosisSetCheck(diagnosis);
     }
+    
     public enum AnimalTypeEnum
     {
-        Cat ,
-        Dog ,
-        Cavy ,
-        Parrot
+        Cat = 1,
+        Dog = 2,
+        Cavy = 3,
+        Parrot = 4
     }
     public enum DiagnosisEnum
     {
-        Medicate ,
-        Surgery ,
-        NoHelp
+        Medicate = 1,
+        Surgery = 2,
+        NoHelp = 3
     }
 
     public void AddDiagnosis(DiagnosisEnum diagnosis)
@@ -55,24 +61,24 @@ public class ClassLessonHomeWork
 
     private void AnimalSetCheck(int value)
     {
-        if (value >= 0 && value < Enum.GetNames(typeof(AnimalTypeEnum)).Length)
+        if (value > 0 && value <= Enum.GetNames(typeof(AnimalTypeEnum)).Length)
         {
             _animalType = value;
             return;
         }
-
+        
         throw new ArgumentException(
-            $"Введите значение в диапазоне от 0 до {Enum.GetNames(typeof(AnimalTypeEnum)).Length}");
+            $"Введите значение в диапазоне от 1 до {Enum.GetNames(typeof(AnimalTypeEnum)).Length}");
     }
     private void DiagnosisSetCheck(int value)
     {
-        if (value >= 0 && value < Enum.GetNames(typeof(DiagnosisEnum)).Length)
+        if (value > 0 && value <= Enum.GetNames(typeof(DiagnosisEnum)).Length)
         {
             _diagnosis = value;
             return;
         }
         throw new ArgumentException(
-            $"Введите значение в диапазоне от 0 до {Enum.GetNames(typeof(DiagnosisEnum)).Length}");
+            $"Введите значение в диапазоне от 1 до {Enum.GetNames(typeof(DiagnosisEnum)).Length}");
     }
     private void InitialCostCheck()
     {
