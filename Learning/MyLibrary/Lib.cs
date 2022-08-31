@@ -1,5 +1,6 @@
 ﻿namespace MyLibrary;
 
-public class Class1
+public class Lib
 {
+    public int Number { get; set; }
 }
