@@ -1,10 +1,8 @@
 ﻿using Learning;
+using MyLibrary;
 
-var constVsReadonly = new ConstVsReadonlyLesson(32);
-
-constVsReadonly.GetReadonlyFields();
-
-ConstVsReadonlyLesson.GetConstFields();
-Console.WriteLine(ConstVsReadonlyLesson.PI);
+var b = Interval.IntervalCheck(54, 32, 7);
+var c = Interval.RangeCheck(43, 32, 33);
+Console.WriteLine(c);
 Console.Read();
 
