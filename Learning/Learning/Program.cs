@@ -1,8 +1,10 @@
 ﻿using Learning;
-using MyLibrary;
 
-var b = Interval.IntervalCheck(54, 32, 7);
-var c = Interval.RangeCheck(43, 32, 33);
-Console.WriteLine(c);
+var student = new Student("Gary","Anderson","Philosophy");
+var employee = new Employee("Tom","Jerry","Manager");
+
+Person person = new Student("H","K","O");
+
+
 Console.Read();
 
