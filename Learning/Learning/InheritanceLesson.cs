@@ -7,37 +7,35 @@ public class InheritanceLesson
 
 class Person
 {
-    public string FirstName { get; set; }
-    public string SecondName { get; set; }
-
-    public Person(string firstName,string secondName)
+    public string Name { get; set; }
+    
+    public Person(string name)
     {
-        FirstName = firstName;
-        SecondName = secondName;
+        Name = name;
+    }
+
+    public void Print()
+    {
+        Console.WriteLine($"Person {Name}");
     }
 }
 
 class Employee:Person
 {
-    public string Position { get; set; }
+    public string Company { get; set; }
 
-    public Employee(string firstName,string secondName,string position):base(firstName,secondName)
+    public Employee(string name,string company):base(name)
     {
-        Position = position;
-    }
-
-    public void PrintName(Person person)
-    {
-        Console.WriteLine(person.FirstName + " " + person.SecondName);
+        Company = company;
     }
 }
 
-class Student:Person
+class Client:Person
 {
-    public string GroupName { get; set; }
+    public string Bank { get; set; }
 
-    public Student(string firstName,string secondName,string groupName):base(firstName,secondName)
+    public Client(string name,string bank):base(name)
     {
-        GroupName = groupName;
+        Bank = bank;
     }
 }
