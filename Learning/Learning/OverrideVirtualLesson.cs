@@ -95,7 +95,7 @@ public class OverrideVirtualLesson
 
 
 
-    public abstract class Shape
+    /*public abstract class Shape
     {
         public virtual void GetPerimeter()
         {
@@ -128,6 +128,6 @@ public class OverrideVirtualLesson
             Console.WriteLine($"Площадь равна {Side * Side}");
         }
 
-    }
+    }*/
 
 }

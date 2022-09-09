@@ -1,13 +1,22 @@
 ﻿using System.Text.Json.Nodes;
 using Learning;
 
-OverrideVirtualLesson.HidingLesson.Person person = new OverrideVirtualLesson.HidingLesson.Person("Tom");
-person.Print();
+var rect = new Rectangle(32, 43);
+var circle = new Circle(54);
 
-OverrideVirtualLesson.HidingLesson.Person employee = new OverrideVirtualLesson.HidingLesson.Employee("Ken", "Microsoft");
-employee.Print();
+Console.WriteLine(rect.GetPerimeter());
+Console.WriteLine(rect.GetArea());
 
-OverrideVirtualLesson.Person p = new OverrideVirtualLesson.Employee("Hi","YU");
-p.Print();
+Console.WriteLine(circle.GetPerimeter());
+Console.WriteLine(circle.GetArea());
+
+PrintShape(rect);
+PrintShape(circle);
+
+void PrintShape(Shape shape)
+{
+    Console.WriteLine($"Perimeter : {shape.GetPerimeter()} \t Area: {shape.GetArea()}");
+}
+
 
 Console.Read();
