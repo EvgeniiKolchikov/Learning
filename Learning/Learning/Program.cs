@@ -1,22 +1,48 @@
 ﻿using System.Text.Json.Nodes;
 using Learning;
 
-var rect = new Rectangle(32, 43);
-var circle = new Circle(54);
+// var tom = new GPerson<int>(1,"Tom");
+// var gary = new GPerson<string>("2", "Gary");
+//
+// var company = new Company<GPerson<int>>(tom);
+// Console.WriteLine(company.CEO.Id);
+// Console.WriteLine(company.CEO.Name);
 
-Console.WriteLine(rect.GetPerimeter());
-Console.WriteLine(rect.GetArea());
+/*GPerson<int>.code = 32;
+var tom = new GPerson<int>(32, "Tomas");
 
-Console.WriteLine(circle.GetPerimeter());
-Console.WriteLine(circle.GetArea());
+var bob = new GPerson<string>("iddi", "Bob");
+GPerson<string>.code = "jjj";
+Console.WriteLine(GPerson<int>.code + " " + GPerson<string>.code);
 
-PrintShape(rect);
-PrintShape(circle);
+int x = 43;
+int y = 56;
 
-void PrintShape(Shape shape)
+string s1 = "Pistolet";
+string s2 = "Mech";
+
+void Swap<T>(ref T x, ref T y)
 {
-    Console.WriteLine($"Perimeter : {shape.GetPerimeter()} \t Area: {shape.GetArea()}");
+    T temp = x;
+    x = y;
+    y = temp;
 }
+Swap(ref x,ref y);
+Swap(ref s1,ref s2);
+
+Console.WriteLine(x + "\t" + y);
+Console.WriteLine(s1 + "\t" + s2);*/
+
+var messenger = new Messenger<Message, Person1>();
+var tom = new Person1("Tom");
+var bob = new Person1("Bob");
+var message = new Message("Hi Friend!");
+
+messenger.SendMessage(tom,bob,message);
 
 
+void SendMessage<T>(T message) where T : Message
+{
+    Console.WriteLine($"Отправляется сообщение: {message.Text}");
+}
 Console.Read();
