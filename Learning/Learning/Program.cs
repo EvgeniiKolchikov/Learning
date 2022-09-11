@@ -3,17 +3,13 @@ using Learning;
 
 
 
-var warrior = new Warrior(120, 30);
-var slayer = new Slayer(80, 24);
-var archer = new Archer(50, 12);
-var player = new Player(250, 29, WeaponTypeEnum.Axe);
+var storage = new Storage<int>();
 
-var enemies = new Unit[] { warrior, slayer, archer };
+storage.AddNewElement(53);
+storage.AddNewElement(5377777);
+storage.AddNewElement(333);
 
-var battle = new BattleField(enemies, player);
-
-Console.WriteLine("Press Enter To Next Step");
-battle.Fight();
+var a =storage.GetArray();
 
 Console.Read();
 
