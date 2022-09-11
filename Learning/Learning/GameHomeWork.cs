@@ -102,12 +102,12 @@ public class Player : Unit
         
         set
         {
-            if (value >= 1 || value <= 2)
+            if (value >= (int)WeaponTypeEnum.Axe || value <= (int)WeaponTypeEnum.Dagger)
             {
                 _weaponType = value;
                 return;
             }
-            value = 1;
+            value = (int)WeaponTypeEnum.Axe;
             _weaponType = value;
         }
     }
