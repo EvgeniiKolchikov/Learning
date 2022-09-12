@@ -3,29 +3,21 @@ using Learning;
 
 
 
-var storage = new Storage<string>();
-
-
-storage.AddNewElement("53");
-storage.AddNewElement("wefw");
-storage.AddNewElement("2dasd");
-storage.AddNewElement("asdakk");
-storage.AddNewElement("qwerty");
-storage.AddNewElement("32");
-storage.AddNewElement("9");
-storage.AddNewElement("sdfskmmv");
-storage.AddNewElement("cvxbf");
-
-
-var a =storage.GetArray();
-var b = storage.ElementFromIndex(2);
-var c =storage.IndexFromElement("qwerty");
-var d = storage.PartOfArray(1, 5);
-storage.DeleteElement(3);
-var e = storage.GetArray();
-storage.AddNewElement("f");
-var f = storage.GetArray();
-Console.Read();
-
-
-
+var tryCatch = new TryCatchLesson();
+// tryCatch.DivideToZeroWithTryCatch();
+// tryCatch.Square("43");
+// tryCatch.Square("f");
+// tryCatch.Divide();
+// tryCatch.ExceptionFilter();
+// tryCatch.CatchBlocks();
+//tryCatch.ThrowMethod();
+try
+{
+    var person = new EPerson { Name = "Tom", Age = 17 };
+}
+catch(PersonException e)
+{
+    Console.WriteLine($"Ошибка: {e.Message}");
+    Console.WriteLine($"Некорректное значение: {e.Value}");
+    throw;
+}
