@@ -2,8 +2,13 @@ namespace Learning;
 
 
 public class Storage<T>
-{ 
-    private ArrayElement<T>[] MyStorage { get; set; }
+{
+    private ArrayElement<T>[] _myStorage;
+    private ArrayElement<T>[] MyStorage
+    {
+        get => _myStorage;
+        set => _myStorage = value;
+    }
     public Storage()
     {
         MyStorage = new ArrayElement<T>[8];
@@ -19,6 +24,7 @@ public class Storage<T>
             if (element.IsActive) continue;
             element.Value = value;
             element.IsActive = true;
+            CheckIndexOut(ref _myStorage);
             return;
         }
     }
@@ -34,24 +40,24 @@ public class Storage<T>
         return resultArray;
     }
     
-    // public T ElementFromIndex(int index)
-    // {
-    //     var activeArray = GetActiveElementsFromArray(MyStorage);
-    //     if (index <= nullCleanedArray.Length - 1)
-    //     {
-    //         return nullCleanedArray[index];
-    //     }
-    //
-    //     return null;
-    // }
-    /*
-    public T IndexFromElement(T element)
+    public T ElementFromIndex(int index)
     {
-        var nullCleanedArray = ArrayNullClean(_array);
-        
-        for (var i = 0; i < nullCleanedArray.Length; i++)
+        var activeArray = GetActiveElementsFromArray(MyStorage);
+        if (index < activeArray.Length)
         {
-            if (nullCleanedArray[i] )
+            return activeArray[index].Value;
+        }
+
+        throw new ArgumentOutOfRangeException($"Индекс должен быть от 0 до {activeArray.Length - 1}");
+    }
+    
+    public int IndexFromElement(T element)
+    {
+        var activeArray = GetActiveElementsFromArray(MyStorage);
+        
+        for (var i = 0; i < activeArray.Length; i++)
+        {
+            if (activeArray[i].Value.Equals(element))
             {
                 return i;
             }
@@ -59,31 +65,43 @@ public class Storage<T>
         return -1;
     }
     
-    public int?[] PartOfArray(int firstIndex, int secondIndex)
+    public T[] PartOfArray(int firstIndex, int secondIndex)
     {
-        var arrayNullCleaned = ArrayNullClean(_array);
-        if (secondIndex > arrayNullCleaned.Length - 1 || secondIndex <= firstIndex) return null;
+        var myArray = GetArray();
+        if (secondIndex > myArray.Length - 1 || secondIndex <= firstIndex)
+            throw new ArgumentOutOfRangeException($"Второй индекс должен быть больше первого и меньше {myArray.Length}");
         var count = secondIndex - firstIndex + 1;
-        var tempArray = new int?[count];
-            
-        Array.Copy(arrayNullCleaned,firstIndex, tempArray,0,count);
+        var tempArray = new T[count];
+        Array.Copy(myArray,firstIndex,tempArray,0,count);
+
         return tempArray;
     }
-    */
-    
-    private static ArrayElement<T>[] GetActiveElementsFromArray(ArrayElement<T>[] array)
+
+    public void DeleteElement(int index)
+    {
+        var activeArray = GetActiveElementsFromArray(MyStorage);
+        if (index >= activeArray.Length || index < 0)
+            throw new ArgumentOutOfRangeException($"индекс должен быть больше 0 и меньше {activeArray.Length}");
+        activeArray[index].Value = default!;
+        activeArray[index].IsActive = false;
+    }
+    private ArrayElement<T>[] GetActiveElementsFromArray(ArrayElement<T>[] array)
     {
         return array.Where(x => x.IsActive).ToArray();
     }
-    /*
-    private static void CheckIndexOut(ref T[] array)
+    
+    private void CheckIndexOut(ref ArrayElement<T>[] array)
     {
         var tempArray = array;
-        var length = array.Length;
-        if (array[^1] == null) return;
-        array = new T[length + 8];
+        if (array[^1].IsActive == false) return;
+        array = new ArrayElement<T>[array.Length + 8];
         Array.Copy(tempArray,array,tempArray.Length);
-    }*/
+        for (var i = 0; i < array.Length; i++)
+        {
+            if (array[i] is not null) continue;
+            array[i] = new ArrayElement<T>();
+        }
+    }
 
     private class ArrayElement<T>
     {
