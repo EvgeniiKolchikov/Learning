@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Learning", "Learning\Learni
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLibrary", "MyLibrary\MyLibrary.csproj", "{274ACBAD-66A1-4DAF-9D80-06A66CE9818E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Learning.Test", "Learning.Test\Learning.Test.csproj", "{75790CED-4C2B-4027-A522-6BB0645D70BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{274ACBAD-66A1-4DAF-9D80-06A66CE9818E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{274ACBAD-66A1-4DAF-9D80-06A66CE9818E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{274ACBAD-66A1-4DAF-9D80-06A66CE9818E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75790CED-4C2B-4027-A522-6BB0645D70BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75790CED-4C2B-4027-A522-6BB0645D70BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75790CED-4C2B-4027-A522-6BB0645D70BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75790CED-4C2B-4027-A522-6BB0645D70BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
