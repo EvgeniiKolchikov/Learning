@@ -17,6 +17,11 @@ public class Storage<T>
             MyStorage[i] = new ArrayElement<T>();
         }
     }
+    public ArrayElement<T> this[int index]
+    {
+        get => _myStorage[index];
+        set => _myStorage[index] = value;
+    }
     public void AddNewElement(T value)
     {
         foreach (var element in MyStorage)
@@ -43,7 +48,11 @@ public class Storage<T>
     public T ElementFromIndex(int index)
     {
         var activeArray = GetActiveElementsFromArray(MyStorage);
-        if (index < activeArray.Length)
+        if (activeArray.Length == 0)
+        {
+            return default;
+        }
+        if (index >= 0 && index < activeArray.Length )
         {
             return activeArray[index].Value;
         }
@@ -92,8 +101,8 @@ public class Storage<T>
     
     private void CheckIndexOut(ref ArrayElement<T>[] array)
     {
-        var tempArray = array;
         if (array[^1].IsActive == false) return;
+        var tempArray = array;
         array = new ArrayElement<T>[array.Length + 8];
         Array.Copy(tempArray,array,tempArray.Length);
         for (var i = 0; i < array.Length; i++)
@@ -102,10 +111,10 @@ public class Storage<T>
             array[i] = new ArrayElement<T>();
         }
     }
-
-    private class ArrayElement<T>
-    {
-        public T Value { get; set; }
-        public bool IsActive { get; set; }
-    }
+   
+}
+public class ArrayElement<T>
+{
+    public T Value { get; set; }
+    public bool IsActive { get; set; }
 }
