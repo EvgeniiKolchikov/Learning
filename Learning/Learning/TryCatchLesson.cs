@@ -123,7 +123,7 @@ public class TryCatchLesson
         catch (Exception e)
         {
             Console.WriteLine($"Ошибка {e.Message}");
-            throw;
+            
         }
         
     }
@@ -156,3 +156,59 @@ public class PersonException : Exception
     }
 }
 
+public class CatchExceptionFindingLesson
+{
+    public void Main()
+    {
+        try
+        {
+            TestClass.Method1();
+        }
+        catch (DivideByZeroException e)
+        {
+            Console.WriteLine($"Catch in Main: {e.Message}");
+        }
+        finally
+        {
+            Console.WriteLine($"Finally в Main");
+        }
+
+        Console.WriteLine($"Конец метода Main");
+    }
+}
+
+public static class TestClass
+{
+    public static void Method1()
+    {
+        try
+        {
+            Method2();
+        }
+        catch (IndexOutOfRangeException e)
+        {
+            Console.WriteLine($"Catch в Method1: {e.Message}");
+        }
+        finally
+        {
+            Console.WriteLine($"Finally block Method1");
+        }
+
+        Console.WriteLine("Конец метода1");
+    }
+
+    public static void Method2()
+    {
+        try
+        {
+            var x = 0;
+            var y = 5 / x;
+        }
+        finally
+        {
+            Console.WriteLine($"Finally block in Method2");
+        }
+
+        Console.WriteLine("Конец метода 2");
+    }
+}
