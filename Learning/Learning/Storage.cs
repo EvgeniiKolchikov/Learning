@@ -48,16 +48,20 @@ public class Storage<T>
     public T ElementFromIndex(int index)
     {
         var activeArray = GetActiveElementsFromArray(MyStorage);
-        if (activeArray.Length == 0)
+
+        switch (activeArray.Length)
         {
-            return default;
+            case 0 when index != 0:
+                throw new ArgumentOutOfRangeException($"Индекс должен быть от 0, т.к. массив пустой");
+            case > 0 when index != 0:
+                throw new ArgumentOutOfRangeException($"Индекс должен быть от 0 до {activeArray.Length - 1}");
         }
-        if (index >= 0 && index < activeArray.Length )
+
+        if (index >= 0 && index < activeArray.Length && activeArray.Length > 0)
         {
             return activeArray[index].Value;
         }
-
-        throw new ArgumentOutOfRangeException($"Индекс должен быть от 0 до {activeArray.Length - 1}");
+        return default; 
     }
     
     public int IndexFromElement(T element)
@@ -89,6 +93,7 @@ public class Storage<T>
     public void DeleteElement(int index)
     {
         var activeArray = GetActiveElementsFromArray(MyStorage);
+        if (activeArray.Length == 0) throw new NullReferenceException("Нельзя удалить из пустого массива");
         if (index >= activeArray.Length || index < 0)
             throw new ArgumentOutOfRangeException($"индекс должен быть больше 0 и меньше {activeArray.Length}");
         activeArray[index].Value = default!;

@@ -9,12 +9,13 @@ public class StorageTests
     {
         //Arrange
         var storage = new Storage<int>();
+        var stringStor = new Storage<string>();
         //Act
         storage.AddNewElement(32);
+        stringStor.AddNewElement(null);
         //Assert
         Assert.Equal(storage[0].Value == 32,storage[0].Value == 32);
-        Assert.Equal(storage[0].IsActive, storage[0].IsActive);
-        Assert.Equal(!storage[1].IsActive, !storage[1].IsActive);
+      
     }
 
     [Fact]
@@ -32,30 +33,53 @@ public class StorageTests
     [Fact]
     public void GetElementValueNullTest()
     {
-        var storage = new Storage<int>();
+        //Arrange
+        var storage = new Storage<string>();
         
-        var el = storage.ElementFromIndex(0);
-        Assert.Equal(0,el);
+        try
+        {
+            //Act
+            var el = storage.ElementFromIndex(1);
+        }
+        catch (Exception e)
+        {
+            //Assert
+            Assert.Equal("Specified argument was out of the range of valid values. (Parameter 'Индекс должен быть от 0, т.к. массив пустой')",
+                e.Message);
+        }
     }
 
     [Fact]
     public void IndexFromElementTest()
     {
+        //Arrange
         var storage = new Storage<double>();
+        //Act
         var ind = storage.IndexFromElement(34);
-        
+        //Assert
         Assert.Equal(-1,ind);
     }
 
     [Fact]
     public void DeleteElementTest()
     {
-        var storage = new Storage<bool>();
-        storage.AddNewElement(true);
-        storage.AddNewElement(false);
-        storage.DeleteElement(1);
+        //Arrange
+        var storage = new Storage<int>();
+      
+        try
+        {
+            //Act
+            storage.DeleteElement(10);
+           
+        }
+        catch (NullReferenceException e)
+        {
+            //Assert
+            Assert.Equal("Нельзя удалить из пустого массива",e.Message);
+        }
         
-        Assert.Equal(storage[1].IsActive == false,storage[1].IsActive == false);
+        
+       
 
     }
     
