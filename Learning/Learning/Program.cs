@@ -1,21 +1,50 @@
 ﻿using Learning;
 
 
-var account = new EventAccount(100);
-account.Notify += DisplayMessage;
+//var runner = new Runner();
 
-account.Put(50);
-Console.WriteLine($"Total: {account.Sum}");
-account.Take(100);
-Console.WriteLine($"Total: {account.Sum}");
-account.Take(100);
-Console.WriteLine($"Total: {account.Sum}");
+// Console.WriteLine(IMovable.MIN_SPEED);
+// IMovable.MaxSpeed = 100;
+// Console.WriteLine(IMovable.MaxSpeed);
+// var time = IMovable.GetTime(32, 4);
+// Console.WriteLine(time);
 
-void DisplayMessage(EventAccount sender, AccountEventArgs e)
-{
-    
-    Console.WriteLine($"Сумма транзакции: {e.Sum}");
-    Console.WriteLine(e.Message);
-    Console.WriteLine($"Текущая сумма на счете: {sender.Sum}");
-}
+
+// var bike = new Bike();
+// var car = new Car();
+// DoSomething(bike);
+// DoSomething(car);
+//
+// void DoSomething(IMovabl movable) => movable.Move();
+//
+// var message = new Message("Nomonoyturyk");
+// message.Print();
+
+
+// IMessage mes = new Message("message");
+//
+// if(mes is Message myMes) myMes.Print();
+//
+// IPrint print = new Message("Printing");
+// if (print is Message pr) Console.WriteLine(pr.Text);
+//
+// var m = new Message("d");
+//
+// Show(m,m);
+//
+// void Show(IMessage ms,IPrint pr)
+// {
+//     if (pr is not Message pr1) return;
+//     pr1.Text = ms.Text;
+//     Console.WriteLine(ms.Text + pr1.Text);
+//
+// }
+
+var tst = new Tst();
+(tst as IFoo).Execute();
+(tst as IBar).Execute();
+
+
+
+
 
