@@ -40,10 +40,42 @@
 //
 // }
 
-var tst = new Tst();
-(tst as IFoo).Execute();
-(tst as IBar).Execute();
 
+// var per = new StudyPerson();
+// ((IScool)per).Study();
+// (per as IUniversity).Study();
+
+// var tst = new TestPers();
+// tst.Execute();
+
+
+// BaseAction heroAction = new HeroAction();
+// heroAction.Move();
+//
+// IAction action = new HeroAction();
+// action.Move();
+//
+// HeroAction heroAction2 = new HeroAction();
+// heroAction2.Move();
+
+
+// var message1 = new Message1("Интерфейсы в обощениях");
+// var messenger1 = new Messenger<Message1>();
+// messenger1.Send(message1);
+//
+// var message2 = new PrintableMessage("Printable Message");
+// var messenger2 = new Messenger<IPrintableMessage>();
+// messenger2.Send(message2);
+
+
+// var userInt = new User<int>(12);
+// Console.WriteLine(userInt.Id);
+//
+// var userString = new User<string>("fer");
+// Console.WriteLine(userString.Id);
+//
+// var intUser = new IntUser(3);
+// Console.WriteLine(intUser.Id);
 
 
 

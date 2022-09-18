@@ -123,15 +123,112 @@ interface IBar
     void Execute();
 }
 
-class Tst:IFoo,IBar
+class Tst:IFoo
 {
-    void IFoo.Execute()
+    public void Execute()
     {
-        Console.WriteLine("f");
+        Console.WriteLine("Void in Tst Class");
     }
 
-    void IBar.Execute()
+   
+}
+
+interface IScool
+{
+    void Study();
+}
+
+interface IUniversity
+{
+    void Study();
+}
+
+class StudyPerson : IScool, IUniversity
+{
+    void IScool.Study() => Console.WriteLine("Scool study");
+    void IUniversity.Study() => Console.WriteLine("University study");
+}
+
+class TestPers : Tst, IFoo
+{
+    public void Execute() => Console.WriteLine("Void in TestPers Class");
+}
+
+interface IAction
+{
+    void Move();
+}
+
+class BaseAction : IAction
+{
+    public void Move()
     {
-        Console.WriteLine("b");
+        Console.WriteLine("Move in BaseAction Class");
     }
+}
+
+class HeroAction : BaseAction, IAction
+{
+    public new void Move()
+    {
+        Console.WriteLine("Move in HeroAction Class");
+    }
+
+    void IAction.Move() => Console.WriteLine("Move in IAction Interface");
+}
+
+interface IMessage1
+{
+    string Text { get; set; }
+}
+
+interface IPrint1
+{
+    void Print();
+}
+
+class Message1: IMessage1, IPrint1
+{
+    public string Text { get; set; }
+
+    public Message1(string text) => Text = text;
+    public void Print()
+    {
+        Console.WriteLine(Text);
+    }
+}
+
+class Messenger<T> where T : IMessage1, IPrint1
+{
+    public void Send(T message)
+    {
+        Console.WriteLine("Отправляется сообщение: ");
+        message.Print();
+    }
+}
+
+interface IPrintableMessage : IMessage1, IPrint1 {}
+
+class PrintableMessage : IPrintableMessage
+{
+    public string Text { get; set; }
+    public PrintableMessage(string text) => Text = text;
+    public void Print() => Console.WriteLine(Text);
+}
+
+interface IUser<T>
+{
+    T Id { get; }
+}
+
+class User<T> : IUser<T>
+{
+    public T Id { get; set; }
+    public User(T id) => Id = id;
+}
+
+class IntUser : IUser<int>
+{
+    public int Id { get; }
+    public IntUser(int id) => Id = id;
 }
