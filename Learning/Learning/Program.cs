@@ -1,105 +1,69 @@
 ﻿using Learning;
 
+//Определение операторов
 
-//var runner = new Runner();
-
-// Console.WriteLine(IMovable.MIN_SPEED);
-// IMovable.MaxSpeed = 100;
-// Console.WriteLine(IMovable.MaxSpeed);
-// var time = IMovable.GetTime(32, 4);
-// Console.WriteLine(time);
-
-
-// var bike = new Bike();
-// var car = new Car();
-// DoSomething(bike);
-// DoSomething(car);
+// var count = new Counter(){Value = 32};
+// var count2 = new Counter(){Value = 33};
 //
-// void DoSomething(IMovabl movable) => movable.Move();
+// bool result = count > count2;
+// var c3 = count + count2;
+// var val = count + 12;
 //
-// var message = new Message("Nomonoyturyk");
-// message.Print();
-
-
-// IMessage mes = new Message("message");
-//
-// if(mes is Message myMes) myMes.Print();
-//
-// IPrint print = new Message("Printing");
-// if (print is Message pr) Console.WriteLine(pr.Text);
-//
-// var m = new Message("d");
-//
-// Show(m,m);
-//
-// void Show(IMessage ms,IPrint pr)
+// if (result)
 // {
-//     if (pr is not Message pr1) return;
-//     pr1.Text = ms.Text;
-//     Console.WriteLine(ms.Text + pr1.Text);
-//
+//     Console.WriteLine("count > count 2");
+//    
 // }
-
-
-// var per = new StudyPerson();
-// ((IScool)per).Study();
-// (per as IUniversity).Study();
-
-// var tst = new TestPers();
-// tst.Execute();
-
-
-// BaseAction heroAction = new HeroAction();
-// heroAction.Move();
+// else
+// {
+//     Console.WriteLine("count < count 2");
+// }
 //
-// IAction action = new HeroAction();
-// action.Move();
+// Console.WriteLine(c3.Value);
 //
-// HeroAction heroAction2 = new HeroAction();
-// heroAction2.Move();
-
-
-// var message1 = new Message1("Интерфейсы в обощениях");
-// var messenger1 = new Messenger<Message1>();
-// messenger1.Send(message1);
+// //Определение инкремента и декремента
 //
-// var message2 = new PrintableMessage("Printable Message");
-// var messenger2 = new Messenger<IPrintableMessage>();
-// messenger2.Send(message2);
+// var c4 = count++;
+// Console.WriteLine(count.Value);
+// Console.WriteLine(c4.Value);
 
 
-// var userInt = new User<int>(12);
-// Console.WriteLine(userInt.Id);
+//Применение операторов преобразования в программе:
+
+// var counter = new CCounter(){Seconds = 3};
 //
-// var userString = new User<string>("fer");
-// Console.WriteLine(userString.Id);
+// var x = (int)counter;
 //
-// var intUser = new IntUser(3);
-// Console.WriteLine(intUser.Id);
-
-
-// var tom = new PPerson("tom", 28, new CCompany("Microsoft"));
-// var bob = tom;
+// CCounter counter2 = x;
+// Console.WriteLine(counter2.Seconds);
 //
-// var gir = (PPerson)tom.Clone();
-// gir.Name = "gir";
-// gir.Company.Name = "Google";
-// Console.WriteLine(tom.Company.Name);
+// var count = new CCounter() { Seconds = 115 };
+// var timer = new MyTimer() { Hours = 2, Minutes = 33, Seconds = 27};
+//
+// MyTimer timer2 = count;
+// Console.WriteLine(timer2.Hours + ":" + timer2.Minutes + ":" + timer2.Seconds);
+//
+// CCounter ccounter = (CCounter)timer2;
+// Console.WriteLine(ccounter.Seconds);
 
 
-var tom = new ComparablePerson("tom holland",6);
-var bob = new ComparablePerson("maxi",32);
-var sam = new ComparablePerson("amand",90);
+// var clock = new Clock();
+// var val = 34;
+//
+// Clock clock2 = 13;
+// Console.WriteLine(clock2.Hours);
+//
+// var hours = (int)clock2;
+// Console.WriteLine(hours);
 
-ComparablePerson[] people = {tom,bob,sam};
-Array.Sort(people);
-foreach (var per in people)
-{
-    Console.WriteLine($"{per.Name} - {per.Age}");
-}
 
-Array.Sort(people, new Comparator());
-foreach (var per in people)
-{
-    Console.WriteLine($"{per.Name} - {per.Age}");
-}
+// var celcius = new Celcius() { Gradus = 0 };
+// celcius = 45;
+// Console.WriteLine(celcius.Gradus);
+//
+// var gr = (double)celcius;
+// Console.WriteLine(gr);
+//
+// var fahrengeit = new Fahrenheit() { Gradus = 44 };
+// fahrengeit = (Fahrenheit)celcius;
+// Console.WriteLine(fahrengeit.Gradus);
