@@ -232,3 +232,58 @@ class IntUser : IUser<int>
     public int Id { get; }
     public IntUser(int id) => Id = id;
 }
+
+class PPerson : ICloneable
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public CCompany Company { get; set; }
+    public PPerson(string name, int age, CCompany company)
+    {
+        Name = name;
+        Age = age;
+        Company = company;
+    }
+
+    //public object Clone() => MemberwiseClone(); // неглубокое копирование, в нем копируются только простые поля,
+    //для копирования сложных полей необходимо глубокое, при текущем копировании изменение поля Name в класса CCompany
+    //в объекте, который скопирован, изменит поля копируемого объекта 
+    public object Clone() => new PPerson(Name, Age, new CCompany(Company.Name)); //Глубокое копирование,
+
+}
+
+interface ICloneable
+{
+    object Clone();
+}
+
+class CCompany
+{
+    public string Name { get; set; }
+    public CCompany(string name) => Name = name;
+}
+
+class ComparablePerson : IComparable<ComparablePerson>
+{
+    public string Name { get;}
+    public int Age { get; set; }
+    public ComparablePerson(string name, int age)
+    {
+        Name = name; Age = age;
+    }
+    
+    public int CompareTo(ComparablePerson? person)
+    {
+        if (person is null)  throw new ArgumentException("Параметр метода null");
+        return Age - person.Age;
+    }
+}
+
+class Comparator : IComparer<ComparablePerson>
+{
+    public int Compare(ComparablePerson p1, ComparablePerson p2)
+    {
+        if (p1 is null || p2 is null) throw new ArgumentException("Null");
+        return p1.Name.Length - p2.Name.Length;
+    }
+}

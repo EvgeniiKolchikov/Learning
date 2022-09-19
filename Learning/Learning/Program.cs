@@ -78,5 +78,28 @@
 // Console.WriteLine(intUser.Id);
 
 
+// var tom = new PPerson("tom", 28, new CCompany("Microsoft"));
+// var bob = tom;
+//
+// var gir = (PPerson)tom.Clone();
+// gir.Name = "gir";
+// gir.Company.Name = "Google";
+// Console.WriteLine(tom.Company.Name);
 
 
+var tom = new ComparablePerson("tom holland",6);
+var bob = new ComparablePerson("maxi",32);
+var sam = new ComparablePerson("amand",90);
+
+ComparablePerson[] people = {tom,bob,sam};
+Array.Sort(people);
+foreach (var per in people)
+{
+    Console.WriteLine($"{per.Name} - {per.Age}");
+}
+
+Array.Sort(people, new Comparator());
+foreach (var per in people)
+{
+    Console.WriteLine($"{per.Name} - {per.Age}");
+}
