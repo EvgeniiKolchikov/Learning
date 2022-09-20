@@ -1,4 +1,5 @@
-﻿using Learning;
+﻿using System.Diagnostics.CodeAnalysis;
+using Learning;
 
 //Определение операторов
 
@@ -67,3 +68,80 @@
 // var fahrengeit = new Fahrenheit() { Gradus = 44 };
 // fahrengeit = (Fahrenheit)celcius;
 // Console.WriteLine(fahrengeit.Gradus);
+
+
+//Методы расширения
+// var s = "Lorem ipsum";
+//
+// var i = s.CharCount('m');
+// Console.WriteLine(i);
+
+
+//Partial class - Частичные классы и методы
+// var man = new Man();
+// man.Alive();
+// man.Dead();
+// man.DoSomething();
+
+
+//Анонимные типы
+// var tom = new {Name = "Tom",age = 45};
+//
+// var pers = new Person("Niki") {  };
+//
+// var anon = new { pers.Name };
+// Console.WriteLine(anon.Name);
+
+
+//Кортежи
+
+var cort = (13,45);
+Console.WriteLine(cort.Item1);
+Console.WriteLine(cort.Item2);
+
+(int, string) cort2 = (2, "gh");
+var cort3 = (count: 32, name: "43");
+cort3.count = 43;
+Console.WriteLine(cort3.count + cort3.name);
+
+(int, int) swapper = (98, 22);
+var a = 9;
+var b = 89;
+(a, b) = (b, a); // Удобно использовать для свапа значений
+
+var numbers = new[] { 12, 43, -43, 3424, 0, -78 };
+
+for(var i = 0; i < numbers.Length - 1; i++)
+{
+    for (var j = i + 1; j < numbers.Length; j++)
+    {
+        if (numbers[i] > numbers[j])
+        {
+            (numbers[i], numbers[j]) = (numbers[j], numbers[i]);
+        }
+    }
+}
+
+foreach (var t in numbers)
+{
+    Console.Write(t + " ");
+}
+
+Console.WriteLine();
+
+var tuple = GetValuesData(numbers);
+Console.WriteLine(tuple.sum);
+Console.WriteLine(tuple.count);
+
+
+(int sum, int count) GetValuesData(int[] numb)
+{
+    var res = (sum: 0, count: numb.Length);
+    foreach (var n in numb)
+    {
+        res.sum += n;
+    }
+
+    return res;
+}
+

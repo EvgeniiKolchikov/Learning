@@ -118,3 +118,55 @@ class Fahrenheit
         return new Fahrenheit() { Gradus = 9/5 * celcius.Gradus + 32};
     }
 }
+
+//Методы расширения
+public static class StringExtension
+{
+    public static int CharCount(this string s, char c)
+    {
+        var counter = 0;
+        for (var i = 0; i < s.Length; i++)
+        {
+            if (s[i] == c)
+            {
+                counter++;
+            }
+        }
+
+        return counter;
+    }
+    
+}
+
+//Частичные классы и методы
+public partial class Man
+{
+    public void Alive()
+    {
+        Console.WriteLine("I'm alive");
+    }
+
+    partial void Read();
+
+    public void DoSomething()
+    {
+        Read();
+    }
+}
+
+public partial class Man
+{
+    public void Dead()
+    {
+        Console.WriteLine("I'm dead");
+    }
+
+    partial void Read()
+    {
+        Console.WriteLine("I'm reading");
+    }
+}
+
+
+
+
