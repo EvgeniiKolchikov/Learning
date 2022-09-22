@@ -95,7 +95,8 @@ public class ExceptionHomeWork<T>
         var activeArray = GetActiveElementsFromArray(MyStorage);
         if (activeArray.Length == 0) throw new MyException("Нельзя удалить из пустого массива");
         if (index >= activeArray.Length || index < 0)
-            throw new MyException($"индекс должен быть больше 0 и меньше {activeArray.Length + 1}");
+            throw new MyException(); 
+        //  throw new MyException($"индекс должен быть больше 0 и меньше {activeArray.Length + 1}");    
         activeArray[index].Value = default!;
         activeArray[index].IsActive = false;
     }
@@ -126,8 +127,12 @@ public class Element<T>
 
 public class MyException : Exception
 {
-    public MyException(string message)
+    public override string Message { get; } = "Что-то не так";
+    public MyException()
     {
-        Console.WriteLine(message);
+    }
+    public MyException(string message) : base(message)
+    {
+        Message = message;
     }
 }
