@@ -1,24 +1,10 @@
 ﻿using Learning;
 
-var storage = new ExceptionHomeWork<int>();
-storage.AddNewElement(34);
+// var iEnumerable = new IEnumerableIEnumeratorLesson();
+// iEnumerable.Run();
 
-try
+var week = new Week();
+foreach (var day in week)
 {
-    storage.DeleteElement(3);
+    Console.WriteLine(day);
 }
-catch (MyException e)
-{
-    Console.WriteLine(e.Message);
-}
-
-try
-{
-    storage.PartOfArray(1, 4);
-}
-catch (MyException e)
-{
-    Console.WriteLine(e.Message);
-}
-
-
