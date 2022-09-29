@@ -1,6 +1,20 @@
 ﻿using Learning;
 
-// DateTime Lesson
+var storage = new Storage<int>();
+storage.AddNewElement(122);
+storage.AddNewElement(23);
 
-var dateTime = new DateTimeLesson();
-dateTime.Run();
+foreach (var i in storage)
+{
+    Console.WriteLine(i);
+}
+
+var stStor = new Storage<string>();
+stStor.AddNewElement("dsffsdf");
+stStor.AddNewElement("dwifn");
+stStor.AddNewElement("wfwf");
+
+foreach (var element in stStor)
+{
+    Console.WriteLine(element);
+}

@@ -1,7 +1,9 @@
+using System.Collections;
+
 namespace Learning;
 
 
-public class Storage<T>
+public class Storage<T> : IEnumerable<T>
 {
     private ArrayElement<T>[] _myStorage;
     private ArrayElement<T>[] MyStorage
@@ -116,10 +118,55 @@ public class Storage<T>
             array[i] = new ArrayElement<T>();
         }
     }
-   
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        return new StorageEnumerator<T>(_myStorage);
+    }
+    IEnumerator IEnumerable.GetEnumerator()=> GetEnumerator();
+    
 }
 public class ArrayElement<T>
 {
     public T Value { get; set; }
     public bool IsActive { get; set; }
+}
+
+public class StorageEnumerator<T> : IEnumerator<T>
+{
+    private ArrayElement<T>[] _myArray;
+    private int _position = -1;
+    public StorageEnumerator(ArrayElement<T>[] storage)
+    {
+        var length = storage.Count(x => x.IsActive);
+        _myArray = new ArrayElement<T>[length];
+        for (var i = 0; i < _myArray.Length; i++)
+        {
+            _myArray[i] = storage[i];
+        }
+    }
+    public bool MoveNext()
+    {
+        _position++;
+        return _position < _myArray.Length;
+    }
+    public void Reset() => _position = -1;
+    public T Current
+    {
+        get
+        {
+            try
+            {
+                return _myArray[_position].Value;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw new IndexOutOfRangeException();
+            }
+        }
+    }
+    object IEnumerator.Current => Current;
+
+    public void Dispose() {}
+    
 }
