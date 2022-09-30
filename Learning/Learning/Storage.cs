@@ -3,9 +3,11 @@ using System.Collections;
 namespace Learning;
 
 
-public class Storage<T> : IEnumerable<T>
+public class Storage<T> : IEnumerable<T>, IEnumerator<T>
 {
     private ArrayElement<T>[] _myStorage;
+    private int _position = -1;
+    private ArrayElement<T>[] _enumerableStorage;
     private ArrayElement<T>[] MyStorage
     {
         get => _myStorage;
@@ -18,6 +20,8 @@ public class Storage<T> : IEnumerable<T>
         {
             MyStorage[i] = new ArrayElement<T>();
         }
+
+        
     }
     public ArrayElement<T> this[int index]
     {
@@ -121,43 +125,28 @@ public class Storage<T> : IEnumerable<T>
 
     public IEnumerator<T> GetEnumerator()
     {
-        return new StorageEnumerator<T>(_myStorage);
+        var count = GetActiveElementsFromArray(MyStorage).Length;
+        _enumerableStorage = new ArrayElement<T>[count];
+        for (var i = 0; i < count; i++)
+        {
+            _enumerableStorage[i] = MyStorage[i];
+        }
+        return this;
     }
     IEnumerator IEnumerable.GetEnumerator()=> GetEnumerator();
-    
-}
-public class ArrayElement<T>
-{
-    public T Value { get; set; }
-    public bool IsActive { get; set; }
-}
-
-public class StorageEnumerator<T> : IEnumerator<T>
-{
-    private ArrayElement<T>[] _myArray;
-    private int _position = -1;
-    public StorageEnumerator(ArrayElement<T>[] storage)
-    {
-        var length = storage.Count(x => x.IsActive);
-        _myArray = new ArrayElement<T>[length];
-        for (var i = 0; i < _myArray.Length; i++)
-        {
-            _myArray[i] = storage[i];
-        }
-    }
     public bool MoveNext()
     {
         _position++;
-        return _position < _myArray.Length;
+        return _position < _enumerableStorage.Length;
     }
     public void Reset() => _position = -1;
-    public T Current
+    public T Current 
     {
         get
         {
             try
             {
-                return _myArray[_position].Value;
+                return _enumerableStorage[_position].Value;
             }
             catch (IndexOutOfRangeException)
             {
@@ -168,5 +157,9 @@ public class StorageEnumerator<T> : IEnumerator<T>
     object IEnumerator.Current => Current;
 
     public void Dispose() {}
-    
+}
+public class ArrayElement<T>
+{
+    public T Value { get; set; }
+    public bool IsActive { get; set; }
 }
