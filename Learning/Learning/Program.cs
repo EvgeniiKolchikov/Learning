@@ -1,20 +1,40 @@
-﻿using Learning;
+﻿using System.Collections;
+using Learning;
 
-var storage = new Storage<int>();
-storage.AddNewElement(122);
-storage.AddNewElement(23);
-
-foreach (var i in storage)
+static IEnumerable<string> GetListString()
 {
-    Console.WriteLine(i);
+    var retList = new List<string>();
+    var value = "1";
+    for (int i = 0; i < 10; i++)
+    {
+        retList.Add(value);
+        value += "i";
+        yield return retList[i];
+    }
+    
 }
 
-var stStor = new Storage<string>();
-stStor.AddNewElement("dsffsdf");
-stStor.AddNewElement("dwifn");
-stStor.AddNewElement("wfwf");
-
-foreach (var element in stStor)
+foreach (var i in GetListString())
 {
-    Console.WriteLine(element);
+    Console.WriteLine(i);
+    Console.ReadKey();
+}
+
+
+IEnumerable<int> GetPrimeNumbers(int count)
+{
+    
+    for (var i = 2; i < count; i++)
+    {
+        if (count % i != 0)
+        {
+            yield return i;
+        }
+    }
+}
+
+foreach (var t in GetPrimeNumbers(100))
+{
+    Console.WriteLine(t);
+    Console.ReadKey();
 }
