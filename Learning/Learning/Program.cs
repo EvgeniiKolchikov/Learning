@@ -38,3 +38,4 @@ foreach (var t in GetPrimeNumbers(100))
     Console.WriteLine(t);
     Console.ReadKey();
 }
+
