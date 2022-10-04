@@ -9,8 +9,7 @@ public class StringBuilderRegexHomeWork
     {
         if (input.Length == 0)
         {
-            Console.WriteLine("Пусто, Введите значение поиска");
-            throw new ArgumentNullException();
+            throw new ArgumentNullException(null,"Пусто, Введите значение поиска");
         }
         
         var sb = new StringBuilder();
