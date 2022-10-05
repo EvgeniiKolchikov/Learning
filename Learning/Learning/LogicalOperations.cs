@@ -5,13 +5,13 @@ public static class LogicalOperations
     public static bool? IfElseMethod(string? value)
     {
         if (value == "True") return true;
-        else if (value == "true") return true;
-        else if (value == "1") return true;
-        else if (value == "1.0") return true;
-        else if (value == "False") return false;
-        else if (value == "false") return false;
-        else if (value == "0") return false;
-        else if (value == "0.0") return false;
+        if (value == "true") return true;
+        if (value == "1") return true;
+        if (value == "1.0") return true;
+        if (value == "False") return false;
+        if (value == "false") return false;
+        if (value == "0") return false;
+        if (value == "0.0") return false;
         return null;
     }
 
