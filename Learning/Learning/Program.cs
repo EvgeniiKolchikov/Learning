@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using Learning;
 
-var reader = new Reader();
-reader.ReadEBook();
-reader.ReadBook();
-Console.WriteLine();
+var week = new Week();
+foreach (var s in week)
+{
+    Console.WriteLine(s);
+}
 
