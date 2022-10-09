@@ -8,11 +8,11 @@ public class ArrayLesson
     {
 
         //объявление массивов
-        int[] numbers = new int[4];
-        int[] numbers2 = new int[4] { 1, 2, 3, 4 };
-        int[] numbers3 = new int[] { 1, 2, 3, 4, 5 };
-        int[] numbers4 = new[] { 1, 2, 3, 4 };
-        int[] numbers5 = { 1, 2, 3, 4, 5 };
+        var numbers = new int[4];
+        var numbers2 = new int[4] { 1, 2, 3, 4 };
+        var numbers3 = new int[] { 1, 2, 3, 4, 5 };
+        var numbers4 = new[] { 1, 2, 3, 4 };
+        var numbers5 = new[] { 1, 2, 3, 4, 5 };
 
         string[] people = { "tom", "rrj" };
 
