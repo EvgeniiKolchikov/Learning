@@ -8,6 +8,7 @@ public class ConstVsReadonlyLesson
     private readonly int a;
     private static readonly int b;
 
+
     static ConstVsReadonlyLesson()
     {
         b = 333;
