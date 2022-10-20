@@ -1,6 +1,20 @@
 ﻿using Learning;
 
-for (var i = 0; i < 6; i++)
-{
-    var reader = new MyReader(i);
-}
+var taskLesson = new TPLLesson();
+//taskLesson.TaskMethod();
+//taskLesson.TaskWait();
+//taskLesson.TaskWait2();
+//taskLesson.TaskWaitRunSynchronously();  // синхронный запуск задачи
+//taskLesson.TaskProperies();
+//taskLesson.TaskArray();
+taskLesson.TaskSum();
+
+
+
+
+
+
+
+
+
+
