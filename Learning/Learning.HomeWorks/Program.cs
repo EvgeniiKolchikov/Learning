@@ -1,13 +1,9 @@
 ﻿using Learning.HomeWorks;
 
+var siteReq = new ThreadSiteRequesHomeWork();
 
-// ThreadArrayHomeWork
+siteReq.SetTimer();
+//
+// siteReq.RunTasks();
+Console.ReadLine();
 
-var threadHomeWork = new ThreadArrayHomeWork(30);
-//threadHomeWork.ThreadMethod();
-//threadHomeWork.TaskMethod();
-
-
-
-
-Console.WriteLine("Main End");
