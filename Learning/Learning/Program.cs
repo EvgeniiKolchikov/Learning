@@ -1,16 +1,19 @@
 ﻿using Learning;
 
-var parallelLesson = new ParallelLesson();
-parallelLesson.Run();
+// var canTok = new CancellationTokenLesson();
+// canTok.Run();
 
-var parallelFor = new ParallelForLesson();
-parallelFor.Run();
+// var cancExept = new CancellationTokenExceptionLesson();
+// cancExept.Run();
 
-var parForeach = new ParallelForeachLesson();
-parForeach.Run();
+// var regToken = new CancellationTokenRegisterLesson();
+// regToken.Run();
 
-var parBreak = new ParallelBreakLesson();
-parBreak.Run();
+// var tokenToExternalMethod = new CancellationTokenExternalMethodLesson();
+// tokenToExternalMethod.Run();
+
+var parallelCancel = new ParallelCancelLesson();
+parallelCancel.Run();
 
 
 
