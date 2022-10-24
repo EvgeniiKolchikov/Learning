@@ -1,16 +1,16 @@
 ﻿using Learning;
 
-var taskLesson = new TPLLesson();
-//taskLesson.TaskMethod();
-//taskLesson.TaskWait();
-//taskLesson.TaskWait2();
-//taskLesson.TaskWaitRunSynchronously();  // синхронный запуск задачи
-//taskLesson.TaskProperies();
-//taskLesson.TaskArray();
-taskLesson.TaskSum();
+var parallelLesson = new ParallelLesson();
+parallelLesson.Run();
 
+var parallelFor = new ParallelForLesson();
+parallelFor.Run();
 
+var parForeach = new ParallelForeachLesson();
+parForeach.Run();
 
+var parBreak = new ParallelBreakLesson();
+parBreak.Run();
 
 
 
