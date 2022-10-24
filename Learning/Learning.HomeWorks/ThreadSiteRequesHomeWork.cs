@@ -65,12 +65,12 @@ public class ThreadSiteRequesHomeWork
             using (var client = new WebClient())
             using (client.OpenRead(req))
             {
-                Console.WriteLine(true);
+                Console.WriteLine($"Результат запроса: {req} - " + true);
             }
         }
         catch (Exception e)
         {
-            Console.WriteLine(false);
+            Console.WriteLine($"Результат запроса: {req} - " + false);
         }
     }
 }
