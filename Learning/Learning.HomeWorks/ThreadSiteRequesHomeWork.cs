@@ -1,76 +1,84 @@
+using System.Diagnostics;
 using System.Net;
 using System.Timers;
 using Timer = System.Timers.Timer;
+using System.Net.NetworkInformation;
 
 
 namespace Learning.HomeWorks;
 
 public class ThreadSiteRequesHomeWork
 {
-    private const string localhost = "localhost";
-    private const string vvcard = "https://vvcard.ru/";
-    private const string vk = "https://vk.ru";
-    private const string sayTo = "https://saytkotorogo.net";
-    private const string google = "https://google.ru";
-    private const string facebook = "https://facebook.com";
-    private const string linkedin = "https://linkedin.com";
-    private const string modem = "192.168.0.1";
+    public int RequestInterval { get; set; } = 10000;
+    private bool PingStatus { get; set; }
+    private Stopwatch _stopwatch;
+    private TimeSpan _timeSpan;
 
-    private static int count;
-    private static Timer aTimer = new Timer(1000);
-    public void SetTimer()
+
+    public void Run(string[] addresses)
     {
-        aTimer.Elapsed += ATimerOnElapsed;
-        aTimer.Enabled = true;
-        aTimer.AutoReset = true;
-        aTimer.Start();
-        
-    }
-
-    private void ATimerOnElapsed(object? sender, ElapsedEventArgs e)
-    {
-        count++;
-        Console.WriteLine(count);
-        if (count < 10) return;
-        aTimer.Stop();
-        count = 0;
-        RunTasks();
-        SetTimer();
-    }
-
-
-    public void RunTasks()
-    {
-        var tasks = new Task[]
+        _stopwatch = new Stopwatch();
+        while (true)
         {
-            new Task(() => SiteRequest(localhost)),
-            new Task(() => SiteRequest(vvcard)),
-            new Task(() => SiteRequest(vk)),
-            new Task(() => SiteRequest(sayTo)),
-            new Task(() => SiteRequest(google)),
-            new Task(() => SiteRequest(facebook)),
-            new Task(() => SiteRequest(linkedin)),
-            new Task(() => SiteRequest(modem))
-        };
-        
-        foreach (var t in tasks)
-        {
-            t.RunSynchronously();
+            var tasks = new Task[addresses.Length];
+            for (var i = 0; i < tasks.Length; i++)
+            {
+                var i1 = i;
+            
+                tasks[i] = Task.Factory.StartNew(() => SiteRequest(addresses[i1]));
+            
+            }
+            _stopwatch.Start();
+            Thread.Sleep(RequestInterval);
+            _stopwatch.Stop();
+            _timeSpan = _stopwatch.Elapsed;
+            ShowTime();
         }
+        
     }
-    private void SiteRequest(string req)
+    
+    private void SiteRequest(string address)
     {
+        PingStatus = false; 
         try
         {
-            using (var client = new WebClient())
-            using (client.OpenRead(req))
-            {
-                Console.WriteLine($"Результат запроса: {req} - " + true);
-            }
+            var ping = new Ping();
+                var reply = ping.Send(address,1000);
+                if (reply.Status == IPStatus.Success) PingStatus = true;
         }
-        catch (Exception e)
+        catch (Exception e) 
         {
-            Console.WriteLine($"Результат запроса: {req} - " + false);
+                // ignored
+        }
+        ShowResultRequest(address);
+    }
+
+    private void ShowTime()
+    {
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.WriteLine(new string('#', 50));
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.WriteLine($"Интервал - {_timeSpan.Minutes}:{_timeSpan.Seconds}:{_timeSpan.Milliseconds/10} ");
+        Console.WriteLine($"Текущее время: {DateTime.Now}");
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.WriteLine(new string('#', 50));
+        Console.ForegroundColor = ConsoleColor.White;
+    }
+
+    private void ShowResultRequest(string req)
+    {
+        if (PingStatus)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Результат запроса {req} - Success");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+        else
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"Результат запроса {req} - Failed");
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
+    
 }
