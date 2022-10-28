@@ -15,17 +15,17 @@ public class ThreadSiteRequesHomeWork
     private TimeSpan _timeSpan;
 
 
-    public void Run(string[] addresses)
+    public void Run(IEnumerable<string> addresses)
     {
         _stopwatch = new Stopwatch();
         while (true)
         {
-            var tasks = new Task[addresses.Length];
+            var tasks = new Task[addresses.Count()];
             for (var i = 0; i < tasks.Length; i++)
             {
                 var i1 = i;
             
-                tasks[i] = Task.Factory.StartNew(() => SiteRequest(addresses[i1]));
+                tasks[i] = Task.Factory.StartNew(() => SiteRequest(addresses.ElementAt(i1)));
             
             }
             _stopwatch.Start();
