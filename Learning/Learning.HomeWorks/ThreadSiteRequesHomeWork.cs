@@ -15,7 +15,7 @@ public class ThreadSiteRequesHomeWork
     private TimeSpan _timeSpan;
 
 
-    public void Run(IEnumerable<string> addresses)
+    public async Task RunAsync(IEnumerable<string> addresses)
     {
         _stopwatch = new Stopwatch();
         while (true)
@@ -24,17 +24,14 @@ public class ThreadSiteRequesHomeWork
             for (var i = 0; i < tasks.Length; i++)
             {
                 var i1 = i;
-            
                 tasks[i] = Task.Factory.StartNew(() => SiteRequest(addresses.ElementAt(i1)));
-            
             }
             _stopwatch.Start();
-            Thread.Sleep(RequestInterval);
+            await Task.Delay(RequestInterval);
             _stopwatch.Stop();
             _timeSpan = _stopwatch.Elapsed;
             ShowTime();
         }
-        
     }
     
     private void SiteRequest(string address)

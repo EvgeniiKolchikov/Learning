@@ -1,6 +1,4 @@
-﻿
-using Learning.HomeWorks;
-
+﻿using Learning.HomeWorks;
 
 var addresses = new List<string>
 {
@@ -8,4 +6,4 @@ var addresses = new List<string>
 };
 
 var siteReq = new ThreadSiteRequesHomeWork();
-siteReq.Run(addresses);
+siteReq.RunAsync(addresses);
