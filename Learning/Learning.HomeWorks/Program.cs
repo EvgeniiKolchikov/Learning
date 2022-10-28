@@ -6,4 +6,4 @@ var addresses = new List<string>
 };
 
 var siteReq = new ThreadSiteRequesHomeWork();
-siteReq.RunAsync(addresses);
+await siteReq.RunAsync(addresses);
