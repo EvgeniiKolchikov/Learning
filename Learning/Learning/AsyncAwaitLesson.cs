@@ -3,7 +3,7 @@ namespace Learning;
 public class AsyncAwaitLesson
 {
    
-    public async Task ShowMessage()
+    public async Task ShowMessageAsync()
     {
         Console.WriteLine(DateTime.Now);
         
@@ -18,7 +18,7 @@ public class AsyncAwaitLesson
         Console.WriteLine("Первый метод закончился " + DateTime.Now);
     }
 
-    public async Task ShowMessage2()
+    public async Task ShowMessage2Async()
     {
         
         await Task.Run(() =>
