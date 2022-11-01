@@ -1,15 +1,14 @@
-﻿
-using Learning;
+﻿using Learning;
+
+var linqLesson = new LINQLesson();
+// linqLesson.Linq1();
+// linqLesson.Linq2();
+// linqLesson.Linq3();
+// linqLesson.Linq4();
+//linqLesson.Linq5();
+// linqLesson.Linq6();    
+// linqLesson.Linq7();
+// linqLesson.Linq8();
+linqLesson.Linq9();
 
 
-var a = new AsyncAwaitLesson();
-//await a.ShowMessage(); // Если await есть то код ниже ждет когда выполниться эта строка, только потом начинает выполняться код ниже
-a.ShowMessageAsync(); // Без await метод выполняется асинхронно, код ниже не ждет завершения 
-
-a.ShowMessage2Async(); // Await есть - методы работают асинхронно, 
-
-for(int i = 0; i < 100; i++)
-{
-    Console.WriteLine(i);
-    Thread.Sleep(100);
-}
