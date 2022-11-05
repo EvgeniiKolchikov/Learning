@@ -158,13 +158,205 @@ public class LINQLesson
             Console.WriteLine(employee.Name + " " + employee.Company);
         }
     }
+
+    public void Linq10()
+    {
+        string[] people = { "Tom", "Alice", "Bob", "Sam", "Tim", "Tomas", "Bill" };
+
+        var selectedPeople = people.Where(p => p.Length == 3);
+
+        var selectedPeople2 = from p in people
+            where p.Length == 3
+            select p;
+
+        var selectedPeople3 = people.Where(p => p.Length % 2 == 0);
+
+        foreach (var VARIABLE in selectedPeople3)
+        {
+            Console.WriteLine(VARIABLE);
+        }
+    }
+
+    public void Linq11()
+    {
+        var rnd = new Random();
+        var list = new List<int>();
+
+        for (int i = 0; i < 20; i++)
+        {
+            list.Add(rnd.Next(1,21));
+        }
+
+        var selected = list.Where(item => item % 2 == 0 && item > 10);
+        var selected2 = from item in list
+            where item % 2 == 0 && item > 10
+            select item;
+
+        foreach (var VARIABLE in selected2)
+        {
+            Console.WriteLine(VARIABLE);
+        }
+    }
+
+    public void Linq12()
+    {
+        var people = new List<PersonL1>
+        {
+            new PersonL1 ("Tom", 23, new List<string> {"english", "german"}),
+            new PersonL1 ("Bob", 27, new List<string> {"english", "french" }),
+            new PersonL1 ("Sam", 29, new List<string>  { "english", "spanish" }),
+            new PersonL1 ("Alice", 24, new List<string> {"spanish", "german" })
+        };
+
+        var selected = people.Where(p => p.Age > 25);
+
+        var selectedPeople2 = from p in people
+            from l in p.lang
+            where l == "english"
+            select p;
+        
+        foreach (var VARIABLE in selectedPeople2)
+        {
+            Console.WriteLine(VARIABLE.Name);
+        }
+
+    }
+
+    public void Linq13()
+    {
+        var people= new List<PersonL2>
+        {
+            new StudentL("Tom"),
+            new PersonL2("Sam"),
+            new StudentL("Bob"),
+            new EmployeeL("Mike")
+        };
+
+        var selected = people.OfType<StudentL>();
+
+        foreach (var VARIABLE in selected)
+        {
+            Console.WriteLine(VARIABLE.Name);
+        }
+    }
+
+    public void Linq14()
+    {
+        var n = new []{ 3, 5, 12, 33 };
+
+        var sc = new[] { "Tom", "Bob", "Sam" };
+        
+        var people = new List<PersonL>
+        {
+            new PersonL("Tom", 37),
+            new PersonL("Sam", 28),
+            new PersonL("Tom", 22),
+            new PersonL("Bob", 41),
+        };
+
+        var orderBy = n.OrderBy(i => i);
+        
+        var orderBy1 = from i in n
+            orderby i
+            select i;
+
+        var orderBy2 = sc.OrderBy(s => s);
+
+        var peopleOrdBy = from p in people
+            orderby p.Name
+            select p;
+        
+        foreach (var VARIABLE in peopleOrdBy)
+        {
+            Console.WriteLine(VARIABLE.Name);
+        }
+    }
+
+    public void Linq15()
+    {
+        int[] numbers = { 3, 12, 4, 10 };
+        var people = new List<PersonL>
+        {
+            new PersonL("Tom", 37),
+            new PersonL("Sam", 28),
+            new PersonL("Tom", 22),
+            new PersonL("Bob", 41),
+        };
+        
+        var descNum = from n in numbers
+            orderby n descending 
+            select n;
+
+        var descNum2 = numbers.OrderByDescending(n => n);
+
+        var peopleDesc = from person in people
+            orderby person.Name descending, person.Age
+            select person;
+
+        var peopleDesc2 = people.OrderBy(p => p.Name).ThenByDescending(a => a.Age);
+
+        foreach (var VARIABLE in peopleDesc2)
+        {
+            Console.WriteLine(VARIABLE.Name + " - " + VARIABLE.Age);
+        }
+    }
+
+    public void Linq16()
+    {
+        string[] soft = { "Microsoft", "Google", "Apple", "Microsoft", "Google"};
+        string[] hard = { "Apple", "IBM", "Samsung"};
+
+        var result = soft.Except(hard);
+
+        var intersected = soft.Intersect(hard);
+
+        var distincted = soft.Distinct();
+
+        var unionRes = soft.Union(hard);
+
+        foreach (var VARIABLE in unionRes)
+        {
+            Console.WriteLine(VARIABLE);
+        }
+    }
+
+    public void Linq17()
+    {
+        Person2[] people =
+        {
+            new Person2("Tom", "Microsoft"), new Person2("Sam", "Google"),
+            new Person2("Bob", "JetBrains"), new Person2("Mike", "Microsoft"),
+            new Person2("Kate", "JetBrains"), new Person2("Alice", "Microsoft")
+        };
+
+        var companies = from person in people
+            group person by person.Company;
+
+        foreach (var company in companies)
+        {
+            Console.WriteLine(company.Key);
+
+            foreach (var person in company)
+            {
+                Console.WriteLine(person.Name);
+            }
+
+            Console.WriteLine();
+        }
+    }
 }
 
 
 
+record Person2(string Name, string Company);
+record class PersonL2(string Name);
+record class StudentL(string Name): PersonL2(Name);
+record class EmployeeL(string Name) : PersonL2(Name);
 
 record Course(string Title);
 record Student(string Name);
 
 record CompanyL(string Name, List<PersonL> Staff);
 record PersonL(string Name, int Age);
+
+record PersonL1(string Name, int Age, List<string> lang);
