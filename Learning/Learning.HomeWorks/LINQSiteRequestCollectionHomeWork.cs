@@ -2,10 +2,10 @@ using System.Net.NetworkInformation;
 
 namespace Learning.HomeWorks;
 
-public class LINQHomeWork
+public class LINQSiteRequestCollectionHomeWork
 {
     public List<MyPing> MyList { get; }
-    public LINQHomeWork()
+    public LINQSiteRequestCollectionHomeWork()
     {
         MyList = new List<MyPing>();
     }

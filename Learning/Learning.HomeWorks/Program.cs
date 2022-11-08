@@ -3,7 +3,7 @@ using Learning.HomeWorks;
 
 var sites = new []{"google.com", "metanit.ru"};
 
-var linqHW = new LINQHomeWork();
+var linqHW = new LINQSiteRequestCollectionHomeWork();
 
 await linqHW.PingSitesAsync(sites);
 
