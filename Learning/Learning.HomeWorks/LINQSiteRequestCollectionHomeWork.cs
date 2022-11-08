@@ -10,10 +10,19 @@ public class LINQSiteRequestCollectionHomeWork
         MyList = new List<MyPing>();
     }
 
-    public async Task Run()
+    public async Task RunAsync()
     {
+        var sites = new []{"google.com", "metanit.ru"};
+
+        await PingSitesAsync(sites);
         
-        
+        var linq1 = MyList.Select(p => new NewPing
+        {
+            Address = p.Address,
+            AddressExist = p.AddressExist,
+            MyDateTime = DateTime.Now
+        });
+
     }
     
     public async Task PingSitesAsync(IEnumerable<string> addresses)
