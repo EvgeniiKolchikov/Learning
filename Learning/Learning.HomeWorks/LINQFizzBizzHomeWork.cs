@@ -14,18 +14,19 @@ public class LINQFizzBizzHomeWork
             MyList.Add(rnd.Next(1, 31));
         }
     }
-
     public void Run()
     {
         var resCollection = MyList.Select(n => new string($"{n} - {Check(n)}"));
-       
-        foreach (var elem in resCollection)
+        var resColl = MyList
+            .Select(n => new string($"{n} - " + (n % 3 == 0 && n % 5 == 0 ? "FizzBizz" : n % 3 == 0 ? "Fizz" : n % 5 == 0 ? "Bizz" : "")));
+        var whereColl = MyList.Where(n => n % 3 == 0 || n % 5 == 0)
+            .Select(n => new string($"{n} - " + (n % 3 == 0 && n % 5 == 0 ? "FizzBizz" : n % 3 == 0 ? "Fizz" :  "Bizz")));
+        
+        foreach (var elem in whereColl)
         {
             Console.WriteLine(elem);
         }
-
     }
-
     private string Check(int n)
     {
         if (n % 3 == 0 && n % 5 == 0)
