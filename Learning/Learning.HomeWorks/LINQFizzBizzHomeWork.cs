@@ -21,8 +21,9 @@ public class LINQFizzBizzHomeWork
             .Select(n => new string($"{n} - " + (n % 3 == 0 && n % 5 == 0 ? "FizzBizz" : n % 3 == 0 ? "Fizz" : n % 5 == 0 ? "Bizz" : "")));
         var whereColl = MyList.Where(n => n % 3 == 0 || n % 5 == 0)
             .Select(n => new string($"{n} - " + (n % 3 == 0 && n % 5 == 0 ? "FizzBizz" : n % 3 == 0 ? "Fizz" :  "Bizz")));
-        
-        foreach (var elem in whereColl)
+        var res = MyList.Select
+            (n => new string($"{n} - {(n % 3 == 0 ? "Fizz": "")}{(n % 5 == 0 ? "Bizz": "")}"));
+        foreach (var elem in res)
         {
             Console.WriteLine(elem);
         }
