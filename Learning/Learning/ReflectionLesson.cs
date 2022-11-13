@@ -25,19 +25,18 @@ public class ReflectionLesson
         Console.WriteLine("\nРеализованные интерфейсы");
         foreach (var interf in myTipe.GetInterfaces()) Console.WriteLine(interf);
     }
-
     public void GetMembers_Method()
     {
         var myType = typeof(RPerson2);
-
         foreach (var member in myType.GetMembers())
-            Console.WriteLine($"{member.DeclaringType}, {member.MemberType}, {member.Name}");
         {
-            Console.WriteLine(new string('#', 50));
+            Console.WriteLine($"{member.DeclaringType}, {member.MemberType}, {member.Name}");
         }
-        foreach (var member in myType.GetMembers(BindingFlags.DeclaredOnly
-                                                 | BindingFlags.Instance | BindingFlags.NonPublic |
-                                                 BindingFlags.Public))
+        
+        Console.WriteLine(new string('#', 50));
+        
+        foreach (var member in myType.GetMembers(BindingFlags.DeclaredOnly 
+                                                 | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public))
         {
             Console.WriteLine($"{member.DeclaringType}, {member.MemberType}, {member.Name}");
         }
@@ -66,7 +65,6 @@ public class ReflectionLesson
                                                                            BindingFlags.Public))
             Console.WriteLine($"{method.ReturnType} {method.Name}");
     }
-
     public void GetParameters_Method()
     {
         var myType = typeof(PrinterR);
@@ -79,30 +77,33 @@ public class ReflectionLesson
             for (int i = 0; i < parameters.Length; i++)
             {
                 var param = parameters[i];
-
                 var accessModificator = "";
-
                 if (param.IsIn) accessModificator += "in";
-                else if (param.IsOut) accessModificator += "out";   
-                
+                else if (param.IsOut) accessModificator += "out";
                 Console.Write($"Параметр: {param.ParameterType.Name} {accessModificator} {param.Name}");
                 if (param.HasDefaultValue) Console.Write($" = {param.DefaultValue}");
-
                 if (i < parameters.Length) Console.Write(",");
             }
-
             Console.WriteLine(")");
-
         }
     }
-
     public void InvokeMethod_Method()
     {
         var printer = new PrinterInvoke("Inner Peace");
         var printMethod = typeof(PrinterInvoke).GetMethod("Print", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
-
         printMethod?.Invoke(printer, parameters: null);
-
+    }
+    public void IntervalClassInMyLibraryReflection()
+    {
+        Assembly asm = Assembly.LoadFrom("MyLibrary.dll");
+        Console.WriteLine(asm.FullName);
+        var type = asm.GetType("MyLibrary.Interval",false,true);
+        if (type is not null)
+        {
+            var intervalCheck = type.GetMethod("IntervalCheck", BindingFlags.Public | BindingFlags.Static);
+            var res = intervalCheck?.Invoke(null, new object?[] { 12, 32, 42 });
+            Console.WriteLine("Результат метода: " + res);
+        }
     }
 }
 
@@ -116,7 +117,6 @@ public class PrinterInvoke
 internal class PrinterR
 {
     public string DefaultMessage { get; set; } = "Hello";
-
     public void PrintMessage(string message, int times = 1)
     {
         while (times-- > 0) Console.WriteLine(message);
@@ -131,7 +131,6 @@ internal class PrinterR
 public class RPerson : IEater, IMovableR
 {
     public string Name { get; }
-
     public RPerson(string name)
     {
         Name = name;
@@ -162,7 +161,6 @@ public class RPerson2
 {
     private readonly string name;
     public int Age { get; set; }
-
     public RPerson2(string name, int age)
     {
         this.name = name;
