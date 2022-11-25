@@ -1,16 +1,13 @@
-﻿
- using Learning.HomeWorks;
+﻿using Learning.HomeWorks;
+ 
+var path = "netsettingsXML.xml";
 
-
-
-var path = "netsettings.json";
-
- var jsonHW = new JSONHomeWork();
+var xmlHW = new XMLHomeWork();
 
  while (true)
  {
-     await jsonHW.ShowJsonFromFile(path);
-     var DHCPCheck = await jsonHW.DHCPOnCheckAsync(path);
+     xmlHW.ShowXMLFromFile(path);
+     var DHCPCheck = xmlHW.DHCPOnCheck(path);
 
      if (!DHCPCheck)
      {
@@ -18,7 +15,7 @@ var path = "netsettings.json";
          var input = Console.ReadLine();
          if (input == "1")
          {
-             await jsonHW.DHCPWriteToJsonAsync(path,true);
+             xmlHW.DHCPWriteToXML(path,true);
          }
          else
          {
@@ -27,22 +24,22 @@ var path = "netsettings.json";
      }
      else
      {
-         Console.WriteLine("Введите 2, чтобы отключить DHCP, введите IP адрес");
+         Console.WriteLine("Введите 2, чтобы отключить DHCP, введите Ip адрес");
          var input = Console.ReadLine();
          if (input == "2")
          {
              while (true)
              {
-                 Console.WriteLine("Введите IP");
+                 Console.WriteLine("Введите Ip");
                  var inputIP = Console.ReadLine();
-                 var formatMatch = jsonHW.IPAddressFormatCheck(inputIP);
+                 var formatMatch = xmlHW.IPAddressFormatCheck(inputIP);
                  if (formatMatch)
                  {
-                     jsonHW.IP = inputIP;
-                     await jsonHW.DHCPWriteToJsonAsync(path,false);
+                     xmlHW.Ip = inputIP;
+                     xmlHW.DHCPWriteToXML(path,false);
                      break;
                  }
-                 Console.WriteLine("ВВедите корректный IP");
+                 Console.WriteLine("ВВедите корректный Ip");
                  Console.WriteLine();
              }
          }
@@ -53,6 +50,7 @@ var path = "netsettings.json";
          Console.WriteLine();
      }
  }
+
 
 
 
