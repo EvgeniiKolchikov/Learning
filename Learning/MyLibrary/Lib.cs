@@ -6,4 +6,6 @@ public class Lib
     private protected int Mmm;
     protected string ProtectedString = "Protected";
     internal protected string ProtectedInternal = "ProtectedInternal";
+
+    static int Square(int n) => n * n;
 }
