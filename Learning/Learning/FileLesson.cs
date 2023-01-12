@@ -63,49 +63,39 @@ public class FileLesson
                 Console.WriteLine(file.FullName);
             }
         }
-        
-        
-        
-    }
+     }
+
     public void DirectotyFiltration_Method()
     {
         var dirName = "E:\\";
         Console.WriteLine("Directories:");
-        
         var dirs = Directory.GetDirectories(dirName, "GAMES*.");
-
         var directory = new DirectoryInfo(dirName);
         var dirs2 = directory.GetDirectories("GA*.");
-
         foreach (var dir in dirs2)
         {
             Console.WriteLine(dir);
         }
-
         Console.WriteLine("Files:");
-
         var files = directory.GetFiles("*.db");
-
         foreach (var file in files)
         {
             Console.WriteLine(file);
         }
-
     }
+
     public void CreateDirectoty_Method()
     {
         string path = "D:\\TestDIR";
         string subPath = @"test\test";
-
         var dirInfo = new DirectoryInfo(path);
-
         if (!dirInfo.Exists)
         {
             dirInfo.Create();
         }
-
         dirInfo.CreateSubdirectory(subPath);
     }
+
     public void InfoDirectory_Method()
     {
         string dirName = @"D:\";
@@ -119,7 +109,6 @@ public class FileLesson
     public void DeleteDirectory_Method()
     {
         var dirName = "D:\\TestDIR";
-
         if (Directory.Exists(dirName))
         {
             Directory.Delete(dirName,true);
@@ -134,19 +123,17 @@ public class FileLesson
     {
         var oldPath = "D:\\TestDIR";
         var newPath = "D:\\TransferFolder";
-
         var dirInfo = new DirectoryInfo(oldPath);
         if (dirInfo.Exists && !Directory.Exists(newPath))
         {
             dirInfo.MoveTo(newPath);
             //Directory.Move(oldPath,newPath);
         }
-
     }
+
     public async Task FileFileInfo_Method()
     {
         FileInfo fileInfo = new FileInfo("E:\\entityApp.db");
-
         if (fileInfo.Exists)
         {
             Console.WriteLine($"Имя файла: {fileInfo.Name}");
@@ -158,23 +145,20 @@ public class FileLesson
         var originalText = "HelloWorld!";
         await File.WriteAllTextAsync(path, originalText);
         await File.AppendAllTextAsync(path, "\nGodOfWarRagnarok");
-
         var fileText = await File.ReadAllTextAsync(path);
         Console.WriteLine(fileText);
-
     }
+
     public async Task FileStream_Method()
     {
         var path = "D:\\note.txt";
         var text = "HelloWorld!";
-
         await using (var fileStream = new FileStream(path,FileMode.OpenOrCreate))
         {
             var buffer = Encoding.Default.GetBytes(text);
             await fileStream.WriteAsync(buffer, 0, buffer.Length);
             Console.WriteLine("Текст записан в файл");
         }
-
         await using (var fileStream = File.OpenRead(path))
         {
             var buffer = new byte[fileStream.Length];
@@ -183,22 +167,20 @@ public class FileLesson
             Console.WriteLine($"Текст из файла: {textFromFile}");
         }
     }
+
     public async Task StreamWriterReader_Method()
     {
         var path = "D:\\Test.txt";
         var text = "Test Text";
-
         await using (var streamWriter = new StreamWriter(path,false))
         {
             await streamWriter.WriteLineAsync(text);
         }
-
         await using (var streamWriter = new StreamWriter(path,true))
         {
             await streamWriter.WriteLineAsync("XXXXXXX");
             await streamWriter.WriteLineAsync("Why?");
         }
-
         using (var streamReader = new StreamReader(path))
         {
             // var result = await streamReader.ReadToEndAsync();
@@ -211,16 +193,15 @@ public class FileLesson
             }
         }
     }
+
     public void BinaryWriterReader_Method()
     {
         var path = "D:\\person.dat";
-
         var persons = new PersonBW[]
         {
             new PersonBW("Max", 3),
             new PersonBW("Rex", 77)
         };
-
         using (var binaryWriter = new BinaryWriter(File.Open(path,FileMode.OpenOrCreate)))
         {
             binaryWriter.Write("Tom");
@@ -234,7 +215,6 @@ public class FileLesson
         }
 
         var peopleRes = new List<PersonBW>();
-
         using (var binaryReader = new BinaryReader(File.Open(path,FileMode.Open)))
         {
             while (binaryReader.PeekChar() > -1)
@@ -249,16 +229,13 @@ public class FileLesson
         {
             Console.WriteLine($"{pers.Name} {pers.Age}");
         }
-
     }
-    
 }
 
 public class PersonBW
 {
     public string Name { get; set; }
     public int Age { get; set; }
-
     public PersonBW(string name,int age)
     {
         Name = name;
