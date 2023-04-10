@@ -1,3 +1,3 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using Patterns;
 
-Console.WriteLine("Hello, World!");
+FactoryMethod.Run();
