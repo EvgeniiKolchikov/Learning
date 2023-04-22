@@ -1,3 +1,4 @@
 ﻿using Patterns;
 
-FactoryMethod.Run();
+//FactoryMethod.Run();
+AbstractFactory.Run();
