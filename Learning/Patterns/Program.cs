@@ -4,3 +4,4 @@
 //AbstractFactory.Run();
 //Prototype.Run();
 //Builder.Run();
+Strategy.Run();
